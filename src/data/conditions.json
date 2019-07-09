@@ -1,0 +1,43 @@
+[
+  {
+    "id": 100,
+    "condition": "blinded.",
+    "sightline": false,
+    "defenseDisadvantage": true,
+    "text": "They roll attack as though their opponent is invisible (with disadvantage). They automatically fail any check that requires sight. Attack rolls against them have advantage."
+  }, 
+  {
+    "id": 120,
+    "condition": "deafened.",
+    "canHear": false,
+    "text": "They cannot hear, and will automatically fail any ability check that requires hearing."
+  },
+  {
+    "id": 131,
+    "condition": "exhausted, one level.",
+    "abilityDisadvantage": true,
+    "text": "They have disadvantage on all ability checks."
+  },
+  {
+    "id": 150,
+    "condition": "grappled.",
+    "speed": 0,
+    "text": "Their speed is now zero, and they cannot benefit from any bonuses to their speed."
+  },
+  {
+    "id": 160,
+    "condition": "incapacitated.",
+    "action": false,
+    "reaction": false,
+    "text": "They can't take actions or reactions."
+  },
+  {
+    "id": 170,
+    "condition": "invisible.",
+    "visible": false,
+    "attackAdvantage": true,
+    "defenseAdvantage": true,
+    "heavilyObscured": true,
+    "text": "They cannot be seen by traditional means, and are considered heavily obscured. They may be detected by sound or tracks. Attacks made against them are disadvantaged, and attacks made by them are advantaged."
+  }
+]
