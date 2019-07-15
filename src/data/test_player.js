@@ -1,4 +1,4 @@
-{
+export default {
   "name": "Kevin",
   "level": 1,
   "conditions": [],
@@ -11,5 +11,7 @@
   "defenseAdvantage": false,
   "defenseDisadvantage": false,
   "lightlyObscured": false,
-  "heavilyObscured": false
+  "heavilyObscured": false,
+  canTarget: true,
+  speed: 30,
 }
