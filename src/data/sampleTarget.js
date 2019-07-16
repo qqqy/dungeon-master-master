@@ -1,8 +1,7 @@
 export default {
-  name: "Kevin",
-  hitpoints: 10,
+  name: "Monster",
   level: 1,
-  conditions: {},
+  conditions: [],
   action: true,
   bonusAttack: true,
   bonusAction: true,
@@ -14,11 +13,8 @@ export default {
   lightlyObscured: false,
   heavilyObscured: false,
   canTarget: true,
+  halfCover: false,
+  threeQuarterCover: false,
+  fullCover: true,
   speed: 30,
-  canSee: true,
-  concentrating: false,
-  applyHP(amt){
-    this.hitpoints += amt
-    return this.hitpoints
-  },
 }

@@ -1,10 +1,9 @@
+
+
 export default {
-  requirement: {
-    action: true,
-    inRange: true,
-    incapacitated: false,
-  },
-  conditions: {
-    action: false,
+  requirements: {canTarget: true , action: true},
+  conflicts: [],
+  success(){
+    
   }
 }

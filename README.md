@@ -32,4 +32,8 @@ Lots of black magic on this one.
 BLACK MAGIC:
 - A .vue file compiles into an object
 - Whatever the hell is happening in main.js
-- 
+
+
+Terms:
+ - Roll:
+    An object
