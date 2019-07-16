@@ -1,36 +1,19 @@
 <template>
   <div>
-    <!-- <h1>
-    {{selected}}
-    </h1> -->
-    <h1>
-      {{player.name}}
-    </h1>
-    <!-- <p>{{player}} would like to {{action}} {{target}} using {{kit}}.</p> -->
+    <Buttons
+      :data="{
+        reset,
+        translate,
+        takeAction,
+        testConditions,
+        apply,
+        legalize,
+        }"
+    />
+    
+    <ActionBuilder v-if="player.kit" :data="{weapons: player.kit.weapons , spells: player.kit.preparedSpells , items: player.kit.items , actions}" />
 
-    <!-- <input v-model="message"/> -->
 
-    <select 
-      name="Actions" 
-      id="1" 
-      value="1">
-      <option v-for="(action , index) in actions" :key="index" :value="index">{{action}}</option>
-    </select>
-
-    <select
-      v-if="player.kit"
-      name="Weapons"
-      id="2"
-      value="1">
-      <option v-for="weapon in player.kit.weapons" :value="weapon.id" :key="weapon.id">{{weapon.nickname ? weapon.nickname : weapon.type}}</option>
-    </select>
-
-    <button v-on:click="reset">Start Turn</button>
-    <button v-on:click="apply">Apply Conditions</button>
-    <button v-on:click="translate">Translate Target</button>
-    <button v-on:click="legalize">Check Legality</button>
-    <button v-on:click="apply">Take Action</button>
-    <button v-on:click="testConditions">Debug</button>
     <div id="wrapper">
       <span id="visible">
         <p v-for="(value , property) in player" :key="property">{{property}} : {{value}}</p>
@@ -57,12 +40,18 @@ import translateTarget from "../utils/translateTarget"
 import conditionsClosure from "../utils/determineConditions"
 import roll from "../utils/roll"
 import attackClass from "../utils/actionFactory"
+import ActionBuilder from "./ActionBuilder"
+import Buttons from "./Buttons"
 const conditionsModule = conditionsClosure()
 
 export default {
   name: 'Test',
   props: {
     data: Object
+  },
+  components: {
+    ActionBuilder,
+    Buttons,
   },
   data () {
     return {
