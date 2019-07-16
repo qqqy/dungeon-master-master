@@ -9,14 +9,22 @@
     <!-- <p>{{player}} would like to {{action}} {{target}} using {{kit}}.</p> -->
 
     <!-- <input v-model="message"/> -->
-    <!-- <select 
+
+    <select 
       name="Actions" 
       id="1" 
-      v-model="selected"
       value="1">
+      <option v-for="(action , index) in actions" :key="index" :value="index">{{action}}</option>
+    </select>
 
-      <option v-for="action in actions" :key="action.id" :value="action.id">{{action.name}}</option>
-    </select> -->
+    <select
+      v-if="player.kit"
+      name="Weapons"
+      id="2"
+      value="1">
+      <option v-for="weapon in player.kit.weapons" :value="weapon.id" :key="weapon.id">{{weapon.nickname ? weapon.nickname : weapon.type}}</option>
+    </select>
+
     <button v-on:click="reset">Start Turn</button>
     <button v-on:click="apply">Apply Conditions</button>
     <button v-on:click="translate">Translate Target</button>
@@ -44,25 +52,12 @@ import applyConditions from "../utils/applyConditions"
 import sampleConditions from "../data/sampleConditions"
 import testAction from "../data/sampleAction"
 import sampleTarget from "../data/sampleTarget"
+import sampleKit from "../data/sampleKit"
 import translateTarget from "../utils/translateTarget"
 import conditionsClosure from "../utils/determineConditions"
 import roll from "../utils/roll"
 import attackClass from "../utils/actionFactory"
 const conditionsModule = conditionsClosure()
-const sampleObj = {
-  name: "halfCover",
-  value: true,
-  remove: ["threeQuarterCover", "fullCover"],
-  duration: 5,
-  expire: null,
-  expired(turn){
-    console.log("Expire:" , this.expire, turn)
-    if(turn >= this.expire) return true;
-    return false
-  }
-}
-
-conditionsModule.addCondition(sampleObj)
 
 export default {
   name: 'Test',
@@ -72,9 +67,10 @@ export default {
   data () {
     return {
       // ...this.data,
-      // actions,
+      actions,
       // selected: 1,
       player: {waiting: "on player"},
+      actionProto: [],
       action: testAction,
       target: sampleTarget
     }
@@ -83,6 +79,7 @@ export default {
     reset(){
       conditionsModule.setTurn()
       this.player = {...testPlayer}
+      this.player.kit = sampleKit
       this.player.conditions = conditionsModule.getConditions()
     },
     apply(){
@@ -98,7 +95,6 @@ export default {
         conditionsModule.addCondition(sampleConditions[element])
       });
       this.player.conditions = conditionsModule.getConditions()
-      console.log("This is translate. \nThe Array:" , targetConditions , "\nThe Conditions: " , this.player.conditions)
     },
     takeAction(){
       ruleLegal(this.player , this.actions[0]) && console.log("that worked!")
