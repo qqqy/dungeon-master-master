@@ -15,6 +15,6 @@ export default {
   canTarget: true,
   halfCover: false,
   threeQuarterCover: false,
-  fullCover: true,
+  fullCover: false,
   speed: 30,
 }

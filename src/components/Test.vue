@@ -1,26 +1,26 @@
 <template>
   <div>
-    <h1>
+    <!-- <h1>
     {{selected}}
-    </h1>
+    </h1> -->
     <h1>
       {{player.name}}
     </h1>
     <!-- <p>{{player}} would like to {{action}} {{target}} using {{kit}}.</p> -->
 
     <!-- <input v-model="message"/> -->
-    <select 
+    <!-- <select 
       name="Actions" 
       id="1" 
       v-model="selected"
       value="1">
 
       <option v-for="action in actions" :key="action.id" :value="action.id">{{action.name}}</option>
-    </select>
+    </select> -->
     <button v-on:click="reset">Start Turn</button>
     <button v-on:click="apply">Apply Conditions</button>
     <button v-on:click="translate">Translate Target</button>
-    <button v-on:click="apply">Check Legality</button>
+    <button v-on:click="legalize">Check Legality</button>
     <button v-on:click="apply">Take Action</button>
     <button v-on:click="testConditions">Debug</button>
     <div id="wrapper">
@@ -41,6 +41,7 @@ import actions from "../data/actions.js"
 import testPlayer from '../data/test_player'
 import ruleLegal from "../utils/ruleLegal"
 import applyConditions from "../utils/applyConditions"
+import sampleConditions from "../data/sampleConditions"
 import testAction from "../data/sampleAction"
 import sampleTarget from "../data/sampleTarget"
 import translateTarget from "../utils/translateTarget"
@@ -70,18 +71,19 @@ export default {
   },
   data () {
     return {
-      ...this.data,
-      actions,
-      selected: 1,
-      player: {...testPlayer},
-      playerString: testPlayer,
-      // action: testAction,
+      // ...this.data,
+      // actions,
+      // selected: 1,
+      player: {waiting: "on player"},
+      action: testAction,
       target: sampleTarget
     }
   },
   methods: {
-    takeAction(){
-      ruleLegal(this.player , this.actions[0]) && console.log("that worked!")
+    reset(){
+      conditionsModule.setTurn()
+      this.player = {...testPlayer}
+      this.player.conditions = conditionsModule.getConditions()
     },
     apply(){
       this.player = applyConditions(
@@ -89,16 +91,23 @@ export default {
         this.player.conditions
       )
     },
-    reset(){
-      this.playerString = {...testPlayer}
-    },
     translate(){
-      this.player.conditions = {
-        ...translateTarget(this.target)
-      }
+      const targetConditions = translateTarget(this.target);
+      // TEMP: Would like to use a class to construct conditions
+      targetConditions.forEach(element => {
+        conditionsModule.addCondition(sampleConditions[element])
+      });
+      this.player.conditions = conditionsModule.getConditions()
+      console.log("This is translate. \nThe Array:" , targetConditions , "\nThe Conditions: " , this.player.conditions)
+    },
+    takeAction(){
+      ruleLegal(this.player , this.actions[0]) && console.log("that worked!")
+    },
+    legalize(){
+      console.log(ruleLegal(this.player , this.action.requirements))
     },
     testConditions(){
-      console.log(ruleLegal(this.player , testAction.requirements))
+      console.log(conditionsModule.debugConditions())
     }
   }
 }

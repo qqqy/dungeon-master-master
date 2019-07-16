@@ -1,6 +1,51 @@
 # JACKFRUIT FULLSTACK
 __Learning Vue and MongoDB__
 
+## MAIN ALGORITHM
+- TURN START
+   - Parse Terrain
+   - Parse Abilities
+   - Determine Conditions
+   - Reset Player
+   - Apply Conditions
+- PICK TARGET
+   - Parse Target Terrain
+   - Apply Target Conditions
+   - Parse Target into Conditions
+   - Add Conditions
+- BUILD ACTION
+   - Determine Requirements
+      - Action Type (action, reaction, bonus action, flourish, movement, costless)
+      - Subtype (melee , magic, ranged, dash, check, ready, dodge, help, secondAttack, bonusAttack, use)
+      - Equipment (weapon, focus, components, et cetera)
+      - Range
+      - Advantage/Disadvantage
+   - Determine Legality
+      - Check requirements against player conditions
+   - Determine Conditions
+      - Conditions that will be applied to target
+      - Conditions that will be applied to player
+   - IF ATTACK:
+      - Determine AC / DC
+         - base 10
+         - Add armor bonuses
+         - Add ability modifier(s)
+         - Add terrain bonuses
+      - Determine Advantage
+      - Roll against AC/DC
+      - Return success/failure
+   - IF SAVING THROW:
+      - Determine DC
+         - base 8
+         - Add proficiency
+         - Add spellcasting mod
+      - Determine advantage
+      - Roll against DC
+      - Return success/failure
+         
+   
+
+
 ## NOTES:
 ### Vue Objects
 A new Vue takes an object as an argument with three properties:

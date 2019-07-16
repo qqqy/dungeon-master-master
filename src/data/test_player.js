@@ -2,7 +2,6 @@ export default {
   name: "Kevin",
   hitpoints: 10,
   level: 1,
-  conditions: {},
   action: true,
   bonusAttack: true,
   bonusAction: true,

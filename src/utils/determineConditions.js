@@ -7,11 +7,12 @@ export default function(){
   // A functions module that can alter the conditions
     return {
     addCondition(condition){
-      condition.remove.forEach((val) => this.removeCondition(val));
+      console.log("addConditions invoked" , condition)
+      condition.remove && condition.remove.forEach((val) => this.removeCondition(val));
       // An added condition first removes any conflicting conditions, then returns a function that will return the value if none of the end conditions are met.
       condition.expire = turn + condition.duration
       conditions[condition.name] = function(){
-        if(condition.expired(turn)) return;
+        if(condition.expired(turn)) return "expired";
         return condition.value
       }
     },
@@ -22,9 +23,10 @@ export default function(){
     getConditions(){
       const gottenConditions = {};
       for(let key in conditions){
-        if(conditions[key]()){
+        if(conditions[key]() !== "expired"){
           gottenConditions[key] = conditions[key]()
         } else {
+          console.log(key , " has been removed after returning " , conditions[key]())
           delete conditions[key]
         }
       };
