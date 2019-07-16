@@ -69,7 +69,7 @@ export default {
       conditionsModule.setTurn()
       this.player = {...testPlayer}
       this.player.kit = sampleKit
-      this.player.conditions = conditionsModule.getConditions()
+      this.player.conditions = this.addConditions(["action"])
     },
     apply(){
       this.player = applyConditions(
@@ -79,11 +79,8 @@ export default {
     },
     translate(){
       const targetConditions = translateTarget(this.target);
-      // TEMP: Would like to use a class to construct conditions
-      targetConditions.forEach(element => {
-        conditionsModule.addCondition(sampleConditions[element])
-      });
-      this.player.conditions = conditionsModule.getConditions()
+      // For the moment, we pass in an array of the conditions we want to set.
+      this.player.conditions = this.addConditions(targetConditions)
     },
     takeAction(){
       ruleLegal(this.player , this.actions[0]) && console.log("that worked!")
@@ -93,6 +90,13 @@ export default {
     },
     testConditions(){
       console.log(conditionsModule.debugConditions())
+    },
+    addConditions(arr){
+      // TEMP: Would like to use a class to construct conditions
+      arr.forEach(element => {
+        conditionsModule.addCondition(sampleConditions[element])
+      });
+      return conditionsModule.getConditions()
     }
   }
 }

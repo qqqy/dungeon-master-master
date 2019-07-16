@@ -29,5 +29,15 @@ export default {
       if(turn >= this.expire) return true;
       return false
     }
+  },
+  action: {
+    name: "action",
+    value: true,
+    duration: 1,
+    expire: null,
+    expired(turn){
+      if(turn >= this.expire) return true;
+      return false;
+    }
   }
 }
