@@ -2,6 +2,26 @@
 __Learning Vue and MongoDB__
 
 ## MAIN ALGORITHM
+SECOND ATTEMPT
+Engine is driven by conditions and options
+We need to begin by knowing:
+- The Location of the Players, including terrain
+   - Location can be an object, should have
+- The options of the players
+- The turn order
+- Conditions are applied before abilities. The conditions act as a filter, letting players know which options are valid. 
+- Ideally, it should be built flexible enough that options can be automatically filtered by conditions, or not. 
+- Abilities are just options. Options include:
+   - The default options every player has.
+   - The abilities provided by the player's class and build
+   - The options provided by the player's kit.
+- The player should be offered options. For now, we're going to assume they're filtered by conditions
+   - 
+
+
+
+
+
 - TURN START
    - Parse Terrain
    - Parse Abilities
@@ -42,6 +62,12 @@ __Learning Vue and MongoDB__
       - Determine advantage
       - Roll against DC
       - Return success/failure
+
+      BASIC LOOP
+      CAN I ATTEMPT X?
+      IF YES, DOES IT SUCCEED?
+      IF YES, WHAT IS THE RESULT?
+      IF NO, WHAT IS THE RESULT?
          
    
 

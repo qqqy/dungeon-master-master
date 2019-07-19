@@ -1,12 +1,14 @@
 <template>
   <div>
-    <select v-if="actions" name="actions" id="action-select">
+    <select v-if="actions" name="actions" id="action-select"
+    v-model="attempt.type">
       <option v-for="(action , index) in actions" :key="index">{{action}}</option>
     </select>
 
-    <select name="weapons" id="weapon-select" v-if="weapons" >
+    <select name="weapons" id="weapon-select" v-if="weapons" v-model="attempt.kit" >
       <option v-for="weapon in weapons" :value="weapon.id" :key="weapon.id">{{weapon.nickname ? weapon.nickname : weapon.type}}</option>
     </select>
+    <button v-on:click="debug" >DEBUG</button>
   </div>
 </template>
 
@@ -22,12 +24,17 @@ export default {
       weapons: this.data.weapons,
       spells: this.data.spells,
       items: this.data.items,
-      actionProto: [],
-      action: {}
+      attempt: {
+        type: "",
+        kit: "",
+        target: "",
+      }
     }
   },
   methods: {
-
+    debug(){
+      console.log(this.attempt)
+    }
   }
 }
 </script>

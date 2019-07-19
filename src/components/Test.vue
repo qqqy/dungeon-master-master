@@ -6,7 +6,6 @@
         translate,
         takeAction,
         testConditions,
-        apply,
         legalize,
         }"
     />
@@ -31,7 +30,6 @@ import Vue from 'vue'
 import actions from "../data/actions.js"
 import testPlayer from '../data/test_player'
 import ruleLegal from "../utils/ruleLegal"
-import applyConditions from "../utils/applyConditions"
 import sampleConditions from "../data/sampleConditions"
 import testAction from "../data/sampleAction"
 import sampleTarget from "../data/sampleTarget"
@@ -71,12 +69,6 @@ export default {
       this.player.kit = sampleKit
       this.player.conditions = this.addConditions(["action"])
     },
-    apply(){
-      this.player = applyConditions(
-        this.player , 
-        this.player.conditions
-      )
-    },
     translate(){
       const targetConditions = translateTarget(this.target);
       // For the moment, we pass in an array of the conditions we want to set.
@@ -97,6 +89,8 @@ export default {
         conditionsModule.addCondition(sampleConditions[element])
       });
       return conditionsModule.getConditions()
+    },
+    loop(){
     }
   }
 }
