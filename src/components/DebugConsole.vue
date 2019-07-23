@@ -21,7 +21,7 @@
         />
       </span>
 
-      <button id="debug-button" v-on:click="step">DEBUG</button>
+      <button id="debug-button" v-on:click="debug">DEBUG</button>
       
     </div>
   </div>
@@ -37,15 +37,12 @@ export default {
   components: {
     DebugShow
   },
+  props: {
+    data: Object
+  },
   data(){
-    return {
-      target: {STATUS: "waiting on target"},
-      player: {STATUS: "waiting on player"},
-      messages: [],
-      steps: [
-      ],
-      index: 0,
-    }
+    // return {...this.props.data}
+    return {...this.data}
   },
   methods: {
     spinUp(){
@@ -55,10 +52,7 @@ export default {
       this[name] = [name]
     },
     debug(){
-      this.target = target
-      this.log("Target added")
-      this.player = player
-      this.log("Player added")
+      this.player = {STATUS: "Nipplin the tulips"}
     },
     log(msg){
       this.messages.push(msg)

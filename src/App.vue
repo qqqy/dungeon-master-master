@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <DebugConsole/>
+    <DebugConsole :data="_data"/>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- <Test :data="{message , player , target , kit , action}" /> -->
@@ -18,15 +18,16 @@ export default {
     // Test
     DebugConsole
   },
-  data () {
-    return { 
-      message: 'Can you change me?',
-      player: 'Kevin',
-      action: 'jump',
-      target: 'a big ravine',
-      kit: 'a pole'
+  data(){
+    return {
+      target: {STATUS: "waiting on target"},
+      player: {STATUS: "waiting on player"},
+      messages: [],
+      steps: [
+      ],
+      index: 0,
     }
-  }
+  },
 }
 </script>
 
