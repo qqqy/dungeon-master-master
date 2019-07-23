@@ -1,23 +1,22 @@
 <template>
   <div id="app">
+    <DebugConsole/>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <Test :data="{message , player , target , kit , action}" />
+    <!-- <Test :data="{message , player , target , kit , action}" /> -->
     <!-- {{message}} -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Test from './components/Test.vue'
-
-// console.log(HelloWorld)
+import DebugConsole from "./components/DebugConsole"
 
 export default {
   name: 'app',
   components: {
     // HelloWorld,
-    Test
+    // Test
+    DebugConsole
   },
   data () {
     return { 
@@ -32,12 +31,11 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  /* margin-top: 60px; */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 </style>
