@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="flex container">
+    <div class="flex">
       <span class="border">
         <DebugShow
           :data="player"
@@ -21,7 +21,7 @@
         />
       </span>
 
-      <button id="debug-button" v-on:click="debug">DEBUG</button>
+      <button id="debug-button" v-on:click="step">DEBUG</button>
       
     </div>
   </div>
@@ -41,10 +41,19 @@ export default {
     return {
       target: {STATUS: "waiting on target"},
       player: {STATUS: "waiting on player"},
-      messages: []
+      messages: [],
+      steps: [
+      ],
+      index: 0,
     }
   },
   methods: {
+    spinUp(){
+
+    },
+    load(name){
+      this[name] = [name]
+    },
     debug(){
       this.target = target
       this.log("Target added")
@@ -53,6 +62,10 @@ export default {
     },
     log(msg){
       this.messages.push(msg)
+    },
+    step(){
+      this.steps[this.index]();
+      this.index < this.steps.length - 1 ? this.index++ : this.index = 0
     }
   },
   updated: function (){
