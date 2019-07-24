@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import target from "../data/sampleTarget"
-import player from "../data/test_player"
 import DebugShow from "./DebugShow"
 
 export default {
@@ -38,35 +36,25 @@ export default {
     DebugShow
   },
   props: {
-    data: Object
+    data: Object,
+    methods: Object,
   },
   data(){
-    // return {...this.props.data}
-    return {...this.data}
+    return this.data
   },
   methods: {
     spinUp(){
 
     },
-    load(name){
-      this[name] = [name]
-    },
     debug(){
-      this.player = {STATUS: "Nipplin the tulips"}
+      this.methods.log("Does this work?")
+      this.target.STATUS = "How about this!"
     },
-    log(msg){
-      this.messages.push(msg)
-    },
-    step(){
-      this.steps[this.index]();
-      this.index < this.steps.length - 1 ? this.index++ : this.index = 0
-    }
   },
   updated: function (){
       const logframe = document.getElementById("logframe")
       logframe.scrollTop = (logframe.scrollHeight)
-    
-  }
+    }
 }
 </script>
 
