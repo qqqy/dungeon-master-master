@@ -47,8 +47,7 @@ export default {
 
     },
     debug(){
-      this.methods.log("Does this work?")
-      this.target.STATUS = "How about this!"
+      this.methods.step()
     },
   },
   updated: function (){

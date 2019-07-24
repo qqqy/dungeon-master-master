@@ -6,7 +6,6 @@ SECOND ATTEMPT
 Engine is driven by conditions and options
 We need to begin by knowing:
 - The Location of the Players, including terrain
-   - Location can be an object, should have
 - The options of the players
 - The turn order
 - Conditions are applied before abilities. The conditions act as a filter, letting players know which options are valid. 
