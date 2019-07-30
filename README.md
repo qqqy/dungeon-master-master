@@ -7,6 +7,7 @@ Engine is driven by conditions and options
 We need to begin by knowing:
 - The Location of the Players, including terrain
 - The options of the players
+   - Options are determined on load, but each will have requirements. If the requirements are not met, the action will remain, but will not be available to the player
 - The turn order
 - Conditions are applied before abilities. The conditions act as a filter, letting players know which options are valid. 
 - Ideally, it should be built flexible enough that options can be automatically filtered by conditions, or not. 

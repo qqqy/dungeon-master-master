@@ -4,6 +4,6 @@ export default {
   level: 1,
   location: {},
   options: [],
-  conditions: [],
-  kit: [],
+  conditions: {},
+  kit: {},
 }
